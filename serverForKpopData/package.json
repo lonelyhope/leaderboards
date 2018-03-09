@@ -1,0 +1,24 @@
+{
+  "name": "serverforkpopdata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/app.js --exec node"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "mongodb": "^3.0.4",
+    "mongoose": "^5.0.9",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.12.5",
+    "sequelize": "^4.26.0",
+    "sqlite3": "^3.1.8"
+  }
+}
