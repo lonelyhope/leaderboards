@@ -48,18 +48,22 @@ export default {
                 alert("You haven't input any thing!");
                 return;
             }
-            axios.post('/gaon_month_album', {SearchInfo})
+            var Axios = axios.create({
+                baseURL: 'http://localhost:8082'
+            })
+            var that = this
+            Axios.post('/gaon_month_album', {SearchInfo})
              .then(function(response) { 
                  console.log('Get response:');
-                //  console.log(response);
-                 this.$emit('getSearchRes', response);
+                 console.log(response.data);
+                 that.$emit('getsearchres', response.data);
              })
              .catch(function(err) {
                  console.log('The search get an err:');
                  console.log(err);
              });
             console.log(SearchInfo);
-            this.$emit('getsearchres', SearchInfo);
+            // this.$emit('getsearchres', response.data);
         }
     }
 }
