@@ -1,43 +1,56 @@
 # leaderboards
 
 # Server状态
+
+安装方法：`npm install`
+启动方法：`npm start`，用了nodemon，是一个后端版的live reload，不用管它
+端口在8082
+
 ## 可用Api
+返回数据：一个数组。每个元素是一个JSON Object。
 `POST`  /gaon_month_album ： 对数据库进行查询
+`POST`  /melon_month ： 对数据库进行查询
+`POST`  /melon_week ： 对数据库进行查询
+`POST`  /mnet_week ： 对数据库进行查询
+`POST`  /mnet_year ： 对数据库进行查询
+`POST`  /mnet_month ： 对数据库进行查询
 ## 数据库表头信息
 现在server代码连接的是测试用的云数据库，暂时记录不多，大家先测试是否能连接上。
-现在只有`gaon_month_album`表可查询，我会稍后添加其他表，各个表表头在下面列出。看object的key即可，我懒得排版了_(:зゝ∠)_。(当然，`_id` 不用考虑……)
+各个表表头在下面列出。看object的key即可，我懒得排版了_(:зゝ∠)_。 
+
+3/12 gaon,melon的changes改为change
 
 
 ```javascript
-// gaon_month_album
+// gaon_monthly_album
     rank: Number,
-    changes: String,   
-    album_title: String,   
+    change: String,   
+    album: String,   
     artist: String,  
     month_counts: Number,
     year_sum: Number,
-    production: String,
+    production: String, // 发行商
     record_stamp: String 
 
 // melon_monthly
 {
-       "_id" : ObjectId("5a9f464a541f4a0b188a73c8"),
-        "rank" : "4",
-        "changes" : "71",
-        "song_title" : "뿜뿜",
-        "artist" : "모모랜드 (MOMOLAND)",
-        "album_title" : "GREAT!",
-        "data_song_no" : 30816860,
-        "record_stamp" : "201802"
-}
+ "_id" : ObjectId("5aa6725456c2b9ce9913ba99"), 
+"rank" : 4,
+ "changes" : "71", 
+ "song_title" : "뿜뿜", 
+ "artist" : "모모랜드 (MOMOLAND)", 
+ "album" : "GREAT!",
+ "data_song_no" : 30816860, // melon内部编号
+ "record_stamp" : "201802" 
+ }
 // melon_weekly
 {
         "_id" : ObjectId("5a9f3daa541f4a0b188a295f"),
         "rank" : "2",
-        "changes" : "2",
+        "change" : "2",
         "song_title" : "뿜뿜",
         "artist" : "모모랜드 (MOMOLAND)",
-        "album_title" : "GREAT!",
+        "album" : "GREAT!",
         "data_song_no" : 30816860,
         "record_stamp" : "20180219"
 }
@@ -71,3 +84,12 @@
         "album" : "The Windows Of My Soul",
         "record_stamp" : "2007"
 }
+
+# git 使用笔记
+```
+git add serverForKpopData\src\.
+git add serverForKpopData\package.json
+git add README.md
+git commit
+// s进入输入模式，esc进入命令模式后两次大写Z保存并推出
+git push origin master 

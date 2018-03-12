@@ -1,5 +1,5 @@
 // const { GaonAlbums } = require('../models');
-const gma = require("../models/gaon_monthly_album");
+const gma = require("../models/gaon_monthly_album"); 
  
 module.exports = {
     async albumMonthly(req, res) {
