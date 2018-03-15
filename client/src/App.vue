@@ -1,10 +1,6 @@
 <template>
     <div>
         <router-view name="navbar"></router-view>
-        <div id="navbar">
-            <router-link to="/search">search</router-link>
-            <router-link to="/search">search</router-link>
-        </div>
         <router-view name="content"></router-view>
     </div>
 </template>

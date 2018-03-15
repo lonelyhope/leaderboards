@@ -3,15 +3,15 @@
         <el-menu
             class="nav-aside"
             default-active="1"
-            :router="true"
-            @select="handleSelect">
-            <el-menu-item index="gaon">
+            @select="handleSelect"
+            router>
+            <el-menu-item index="/chart/gaon">
                 <span slot="title">Gaon</span>
             </el-menu-item>
-            <el-menu-item index="melon">
+            <el-menu-item index="/chart/melon">
                 <span slot="title">Melon</span>
             </el-menu-item>
-            <el-menu-item index="mnet">
+            <el-menu-item index="/chart/mnet">
                 <span slot="title">Mnet</span>
             </el-menu-item>
           
@@ -24,7 +24,7 @@
 export default {
     methods: {
         handleSelect(index, indexPath) {
-            console.log(index, indexPath);
+            console.log(this.$route);
         }
     }
 }

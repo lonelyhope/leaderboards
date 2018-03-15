@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import searchPage from '@/components/searchPage'
-import BaseBillboard from '@/components/BaseBillboard'
+import BaseChart from '@/components/BaseChart'
 import HeaderNavBar from '@/components/HeaderNavBar'
-import BillboardPageContent from '@/components/BillboardPageContent'
+import ChartPageContent from '@/components/ChartPageContent'
 
 Vue.use(Router)
 
@@ -15,19 +15,29 @@ export default new Router({
       name: 'HelloWorld',
       components: {
         navbar: HeaderNavBar,
-        content: BillboardPageContent
-      },
-      children: [{
-        path: ':chartName',
-        components: {
-          "main-content": BaseBillboard
-        }
-      }]
+        content: searchPage
+      }
     },
     {
       path: '/search',
       name: 'search',
-      component: searchPage
+      components: {
+        navbar: HeaderNavBar,
+        content: searchPage
+      }
+    }, {
+      path: '/chart',
+      redirect: '/chart/gaon',
+      components: {
+        navbar: HeaderNavBar,
+        content: ChartPageContent
+      },
+      children: [{
+        path: ':chartName',
+        components: {
+          "main-content": BaseChart
+        }
+      }]
     }
   ]
 })
