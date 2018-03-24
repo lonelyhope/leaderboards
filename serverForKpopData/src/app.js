@@ -16,7 +16,7 @@ const mongoose = require("mongoose");
 var db;
 var azureuri = "mongodb://test:test@ds012538.mlab.com:12538/kp1";
 var localuri = "mongodb://localhost:27017/kp1";
-mongoose.connect(localuri).then(
+mongoose.connect(azureuri).then(
   () => { 
     console.log('> DB Connection has been established successfully.');
     app.listen(process.env.PORT || 8082);

@@ -1,21 +1,24 @@
 const { mnw, mnm, mny } = require("../models/mnet");
-
-function makeQueryObj(obj) {
-    var query = {};
-    for (key in obj) {
-        query[key] = new RegExp(obj[key], 'i');
-    }
-    return query;
-}
+var util = require('./util');
+ 
 
 var siteName = "Mnet"
+var lochint = "> success: " + siteName + ",weekly";
 module.exports = {
     async monthly(req, res) {
-        try {
-            var queryobj = makeQueryObj(req.body);
-            var result = await mnm.find(queryobj);
-            // var t = await mm.findOne();
-            var lochint = "> success: " + siteName + ",monthly";
+        try { 
+            // query为空返回当前月份
+            var query = req.query;
+            var result = [];
+            if (JSON.stringify(query) === '{}') {
+                result = await mnm.find({
+                    record_stamp: util.getCurrentTime("YYYYMM")  
+                });
+            } else {
+                result = await mnm.find(query);
+            }
+
+            // var t = await mm.findOne(); 
             console.log(lochint);
             res.status(200).send(result);
         } catch (e) {
@@ -24,9 +27,18 @@ module.exports = {
     },
     async weekly(req, res) {
         try {
-            var queryobj = makeQueryObj(req.body);
-            var result = await mnw.find(queryobj);
-            var lochint = "> success: " + siteName + ",weekly";
+            // console.log(req.query); 
+            // query为空返回当前月份
+            var query = req.query;
+            var result = [];
+            if (JSON.stringify(query) === '{}') {
+                result = await mnw.find({
+                    record_stamp: util.getCurrentTime("yyyymmdd")  
+                });
+            } else {
+                result = await mnw.find(query);
+            }
+            
             res.status(200).send(result);
             console.log(lochint);
         } catch (e) {
@@ -36,9 +48,17 @@ module.exports = {
     },
     async yearly(req, res) {
         try {
-            var queryobj = makeQueryObj(req.body);
-            var result = await mny.find(queryobj);
-            var lochint = "> success: " + siteName + ", yearly";
+            var query = req.query;
+            var result = [];
+            if (JSON.stringify(query) === '{}') {
+                result = await mny.find({
+                    record_stamp: util.getCurrentTime("yyyy") // yyyy
+                });
+            } else {
+                result = await mny.find(query);
+            }
+
+
             res.status(200).send(result);
             console.log(lochint);
         } catch (e) {
